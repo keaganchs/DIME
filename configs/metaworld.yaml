@@ -1,0 +1,45 @@
+defaults:
+  - base
+
+# Environment settings - will be overridden by command line args
+env_name: "metaworld/MT10"  
+seed: 42
+use_jit: true
+tot_time_steps: 1000000
+log_freq: 100
+
+# WANDB settings
+wandb:
+  activate: false
+  project: "dime_metaworld_ipc"
+  entity: null  # Set your wandb entity here
+  group: "metaworld_ipc_benchmark"
+  job_type: "dime"
+
+# Algorithm specific settings
+alg:
+  gamma: 0.99
+  tau: 0.005
+  policy_tau: 0.005
+  policy_delay: 2
+  buffer_size: 1000000
+  batch_size: 256
+  learning_starts: 10000
+  utd: 1
+  
+  # Entropy coefficient settings
+  ent_coef:
+    type: "auto"
+    init: 1.0
+  
+  # Optimizer settings
+  optimizer:
+    lr_actor: 3.0e-4
+    lr_critic: 3.0e-4
+    
+  # Critic settings
+  critic:
+    v_min: -10
+    v_max: 10
+    entr_coeff: 0.03
+    n_atoms: 51
